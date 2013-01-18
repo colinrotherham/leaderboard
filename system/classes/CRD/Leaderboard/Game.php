@@ -130,12 +130,12 @@
 		
 		private function success()
 		{
-			Redirect::to('/');
+			\CRD\Core\Redirect::to('/');
 		}
 		
 		private function fail($type)
 		{
-			Redirect::to('/?error=' . $type);
+			\CRD\Core\Redirect::to('/?error=' . $type);
 		}
 	}
 ?>
