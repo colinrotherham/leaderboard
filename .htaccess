@@ -1,0 +1,9 @@
+AddDefaultCharset UTF-8
+DefaultLanguage en-GB
+RewriteEngine on
+
+# Set up pages
+RewriteRule ^$							/views/view-home.php [QSA,L]
+RewriteRule ^leaderboard/weekly/$		/views/view-leaderboard.php [QSA,L]
+RewriteRule ^leaderboard/all-time/$		/views/view-leaderboard.php?all [QSA,L]
+RewriteRule ^game/add/$					/views/view-add-game.php [QSA,L]
