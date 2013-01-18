@@ -20,3 +20,5 @@ Running the leaderboard
 ```
 
 3. Set up a new Apache website, point to the root of this project
+
+![Sample leaderboard](https://raw.github.com/colinrotherham/leaderboard/master/assets/img/sample.png)
