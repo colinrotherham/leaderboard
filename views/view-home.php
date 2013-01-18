@@ -31,7 +31,7 @@
 ?>
 			<div id="main" role="main"<?php if ($is_invalid) echo ' class="mask"'; ?>>
 
-				<h1>Leaderboard</h1>
+				<h1>Metro Mario</h1>
 	
 				<!-- Totals, all-time -->
 				<div class="ranking ranking-total" data-src="/leaderboard/all-time/">
