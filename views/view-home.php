@@ -50,10 +50,10 @@
 			<div class="popup<?php if ($is_invalid) echo ' show'; ?>">
 				<button class="close">x</button>
 			
-				<h2>Add game</h2>
+				<h2>Add race</h2>
 
 				<div id="error-generic" class="error<?php if ($is_invalid_generic) echo ' show'; ?>">
-					<p>Sorry, we couldn’t add that game. Please try again…
+					<p>Sorry, we couldn’t add that race. Please try again…
 				</div>
 				
 				<div id="error-missing" class="error<?php if ($is_invalid_missing) echo ' show'; ?>">
@@ -65,7 +65,7 @@
 				</div>
 				
 				<div id="error-database" class="error<?php if ($is_invalid_database) echo ' show'; ?>">
-					<p>Sorry, we couldn’t add this game to the database…
+					<p>Sorry, we couldn’t add this race to the database…
 				</div>
 
 				<form method="post" action="/game/add/">

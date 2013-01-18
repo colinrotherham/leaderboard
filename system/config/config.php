@@ -11,7 +11,7 @@
 	date_default_timezone_set('Europe/London');
 
 	// App name, also cache prefix
-	App::$name = 'Game Leaderboard';
+	App::$name = 'Metro Mario';
 
 	// MySQL connection settings
 	App::$credentials->host = 'localhost';

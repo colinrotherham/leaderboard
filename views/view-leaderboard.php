@@ -10,7 +10,7 @@
 	$rankings = new GameRankings();
 	
 	$title = (SHOW_ALL)? 'All-time' : 'This week';
-	$no_results = (SHOW_ALL)? 'There have been no games yet' : 'There have been no games this week';
+	$no_results = (SHOW_ALL)? 'There have been no races yet' : 'There have been no races this week';
 ?>
 			<h2><a href="#reload" class="reload" role="button">Reload</a> <?= $title ?></h2>
 
@@ -68,7 +68,7 @@
 	if (!SHOW_ALL)
 	{
 ?>
-			<button class="add">+ Add game</button>
+			<button class="add">+ Add race</button>
 <?php
 	}
 ?>
