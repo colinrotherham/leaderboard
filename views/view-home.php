@@ -3,6 +3,7 @@
 
 	use \CRD\Core\Template as Template;
 	use \CRD\Leaderboard\GamePlayers as GamePlayers;
+	use \CRD\Leaderboard\GameError as GameError;
 
 	$players = new GamePlayers();
 
