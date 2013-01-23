@@ -29,7 +29,7 @@
 		if ($_GET['error'] == GameError::$database) $is_invalid_database = true;
 	}
 ?>
-			<div id="main" role="main"<?php if ($is_invalid) echo ' class="mask"'; ?>>
+			<div id="main" role="main"<?= ($is_invalid)? ' class="mask"' : '' ?>>
 
 				<h1>Leaderboard</h1>
 	
@@ -47,24 +47,24 @@
 			</div>
 			
 			<!-- Add game -->
-			<div class="popup<?php if ($is_invalid) echo ' show'; ?>">
+			<div class="popup<?= ($is_invalid)? ' show' : '' ?>">
 				<button class="close">x</button>
 			
 				<h2>Add game</h2>
 
-				<div id="error-generic" class="error<?php if ($is_invalid_generic) echo ' show'; ?>">
+				<div id="error-generic" class="error<?= ($is_invalid_generic)? ' show': '' ?>">
 					<p>Sorry, we couldn’t add that game. Please try again…
 				</div>
 				
-				<div id="error-missing" class="error<?php if ($is_invalid_missing) echo ' show'; ?>">
+				<div id="error-missing" class="error<?= ($is_invalid_missing)? ' show' : '' ?>">
 					<p>Sorry, looks like you’ve missed a player…
 				</div>
 				
-				<div id="error-duplicate" class="error<?php if ($is_invalid_duplicate) echo ' show'; ?>">
+				<div id="error-duplicate" class="error<?= ($is_invalid_duplicate)? ' show' : '' ?>">
 					<p>Sorry, looks like you’ve picked duplicate players…
 				</div>
 				
-				<div id="error-database" class="error<?php if ($is_invalid_database) echo ' show'; ?>">
+				<div id="error-database" class="error<?= ($is_invalid_database)? ' show' : '' ?>">
 					<p>Sorry, we couldn’t add this game to the database…
 				</div>
 
