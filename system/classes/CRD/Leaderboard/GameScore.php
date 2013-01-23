@@ -10,6 +10,7 @@
 	class GameScore
 	{
 		public $name = '';
+		public $position = null;
 		public $wins = 0;
 		public $losses = 0;
 		public $differential = 0;
