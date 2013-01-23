@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.25)
 # Database: leaderboard
-# Generation Time: 2013-01-18 01:33:07 +0000
+# Generation Time: 2013-01-23 20:22:31 +0000
 # ************************************************************
 
 
@@ -22,16 +22,6 @@
 
 # Dump of table games
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `games`;
-
-CREATE TABLE `games` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `winnerId` int(11) NOT NULL,
-  `loserId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
@@ -51,7 +41,13 @@ VALUES
 	(11,'2013-01-12 13:04:05',4,5),
 	(12,'2013-01-12 13:04:23',4,5),
 	(13,'2013-01-12 13:04:35',5,2),
-	(14,'2013-01-12 13:08:00',1,5);
+	(14,'2013-01-12 13:08:00',1,5),
+	(15,'2013-01-18 01:47:30',2,1),
+	(16,'2013-01-18 01:48:57',2,1),
+	(17,'2013-01-18 01:49:04',2,3),
+	(18,'2013-01-18 01:49:12',1,2),
+	(19,'2013-01-18 01:49:21',10,2),
+	(20,'2013-01-18 11:17:42',4,3);
 
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -60,19 +56,12 @@ UNLOCK TABLES;
 # Dump of table players
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `players`;
-
-CREATE TABLE `players` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
 
 INSERT INTO `players` (`id`, `name`)
 VALUES
+	(10,'Andrew Smith'),
 	(1,'Andy Atkinson'),
 	(2,'Berty Bryant'),
 	(3,'Christine Cauldwell'),
