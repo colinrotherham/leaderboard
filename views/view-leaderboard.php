@@ -29,31 +29,20 @@
 ?>
 			<table>
 				<tbody>
-<?
+<?php
 		$position = 0;
-		$previous_rank = 0;
+		$position_previous = 0;
 
 		foreach ($rankings->results as $id => $result)
 		{
-			// Same score as last person, don't increment position
-			if ($previous_rank === $result->differential - $result->games_behind)
-			{
-				$position_display = '';
-			}
-			
-			// Increment position
-			else
-			{
-				$position++;
-				$position_display = "{$position}.";
-			}
+			$position = $result->position;
 ?>
 					<tr data-wins="<?= $result->wins ?>" data-losses="<?= $result->losses ?>" data-games-behind="<?= $result->games_behind ?>">
-						<th><?= $position_display ?></th>
+						<th><?= ($position !== $position_previous)? $position . '.' : '' ?></th>
 						<td><?= $result->name ?></td>
 					</tr>
 <?php
-			$previous_rank = $result->differential - $result->games_behind;
+			$position_previous = $position;
 		}
 ?>
 				</tbody>

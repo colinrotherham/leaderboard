@@ -26,6 +26,10 @@
 			// Continue if not empty
 			if (!empty($this->results_wins->num_rows) && !empty($this->results_losses->num_rows))
 			{
+				$this->results();
+				
+				// Process standings then rank
+				$this->standings();
 				$this->rankings();
 			}
 		}
@@ -40,7 +44,7 @@
 			$this->results_losses = $this->database->Query(sprintf(\CRD\Core\App::$queries->losses, $where_clause));
 		}
 
-		public function rankings()
+		public function results()
 		{
 			// Build up results objects
 			while ($win = $this->results_wins->fetch_object())
@@ -65,9 +69,6 @@
 			
 			// Sort object by wins
 			usort($this->results, array($this, 'sort_wins_losses'));
-
-			// Process standings with differential and games-behind
-			$this->standings();
 		}
 
 		public function standings()
@@ -83,9 +84,30 @@
 				{
 					$result->standing($lead_wins, $lead_losses);
 				}
+			}
+		}
+		
+		public function rankings()
+		{
+			$rank = 0;
+			$rank_previous = 0;
+			$position = 0;
+		
+			// Determine rank by differential - games behind
+			usort($this->results, array($this, 'sort_rank'));
 
-				// Determine rank by differential - games behind
-				usort($this->results, array($this, 'sort_rank'));
+			foreach ($this->results as $id => $result)
+			{
+				$rank = $result->differential - $result->games_behind;
+			
+				// Increment position when rank has changed
+				if ($rank !== $rank_previous || $position === 0)
+					$position++;
+
+				// Save rank for the next sweep
+				$rank_previous = $rank;
+				
+				$this->results[$id]->position = $position;
 			}
 		}
 

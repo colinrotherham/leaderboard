@@ -118,11 +118,21 @@
 		background: #F1F1CB;
 		border: 2px dashed #D6A425;
 		border-radius: 10px;
+		border-spacing: 0;
 	}
-	
+
+	.ranking table th,
+	.ranking table td
+	{
+		padding: 1.5% 0;
+	}
+
 	.ranking table th
 	{
 		width: 10%;
+		padding-right: 5%;
+		
+		text-align: right;
 	}
 	
 	.ranking table td
