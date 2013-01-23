@@ -50,7 +50,7 @@
 			<div class="popup<?php if ($is_invalid) echo ' show'; ?>">
 				<button class="close">x</button>
 			
-				<h2>Add race</h2>
+				<h2>Add game</h2>
 
 				<div id="error-generic" class="error<?php if ($is_invalid_generic) echo ' show'; ?>">
 					<p>Sorry, we couldn’t add that race. Please try again…
