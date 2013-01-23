@@ -12,6 +12,9 @@
 
 	// App name, also cache prefix
 	App::$name = 'Game Leaderboard';
+	
+	// Set app version string
+	App::$version = '1.0';
 
 	// MySQL connection settings
 	App::$credentials->host = 'localhost';
