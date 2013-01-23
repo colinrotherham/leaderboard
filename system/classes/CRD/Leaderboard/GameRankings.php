@@ -84,7 +84,7 @@
 					$result->standing($lead_wins, $lead_losses);
 				}
 
-				// Determind rank by differential, games behind
+				// Determine rank by differential - games behind
 				usort($this->results, array($this, 'sort_rank'));
 			}
 		}
