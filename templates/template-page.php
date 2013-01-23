@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- CSS includes -->
-		<link rel="stylesheet" href="/assets/css/game.css?cache=2">
+		<link rel="stylesheet" href="/assets/css/game.css?cache=<?= urlencode(App::$version) ?>">
 		
 		<!-- Initialise advanced UI -->
 		<script>document.documentElement.className = 'wf-loading advanced';</script>
@@ -30,6 +30,6 @@
 		<script src="/assets/js/3rd-party/typekit-loader.min.js"></script>
 
 		<!-- Leaderboard functionality -->
-		<script src="/assets/js/game.js?cache=2"></script>
+		<script src="/assets/js/game.js?cache=<?= urlencode(App::$version) ?>"></script>
 	</body>
 </html>
