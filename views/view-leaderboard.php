@@ -48,9 +48,9 @@
 				$position_display = "{$position}.";
 			}
 ?>
-					<tr>
+					<tr data-wins="<?= $result->wins ?>" data-losses="<?= $result->losses ?>" data-games-behind="<?= $result->games_behind ?>">
 						<th><?= $position_display ?></th>
-						<td data-wins="<?= $result->wins ?>" data-losses="<?= $result->losses ?>" data-games-behind="<?= $result->games_behind ?>"><?= $result->name ?></td>
+						<td><?= $result->name ?></td>
 					</tr>
 <?php
 			$previous_rank = $result->differential - $result->games_behind;
