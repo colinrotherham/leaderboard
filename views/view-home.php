@@ -53,19 +53,19 @@
 				<h2>Add game</h2>
 
 				<div id="error-generic" class="error<?= ($is_invalid_generic)? ' show': '' ?>">
-					<p>Sorry, we couldn’t add that game. Please try again…
+					<p>Sorry, we couldn’t add that game. Please try again…</p>
 				</div>
 				
 				<div id="error-missing" class="error<?= ($is_invalid_missing)? ' show' : '' ?>">
-					<p>Sorry, looks like you’ve missed a player…
+					<p>Sorry, looks like you’ve missed a player…</p>
 				</div>
 				
 				<div id="error-duplicate" class="error<?= ($is_invalid_duplicate)? ' show' : '' ?>">
-					<p>Sorry, looks like you’ve picked duplicate players…
+					<p>Sorry, looks like you’ve picked duplicate players…</p>
 				</div>
 				
 				<div id="error-database" class="error<?= ($is_invalid_database)? ' show' : '' ?>">
-					<p>Sorry, we couldn’t add this game to the database…
+					<p>Sorry, we couldn’t add this game to the database…</p>
 				</div>
 
 				<form method="post" action="/game/add/">
