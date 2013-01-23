@@ -50,10 +50,7 @@
 ?>
 					<tr>
 						<th><?= $position_display ?></th>
-						<td><?= $result->name ?></td>
-						<!--<td><?= $result->wins ?></td>
-						<td><?= $result->losses ?></td>
-						<td><?= $result->games_behind ?></td>-->
+						<td data-wins="<?= $result->wins ?>" data-losses="<?= $result->losses ?>" data-games-behind="<?= $result->games_behind ?>"><?= $result->name ?></td>
 					</tr>
 <?php
 			$previous_rank = $result->differential - $result->games_behind;
