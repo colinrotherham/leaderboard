@@ -30,14 +30,16 @@
 			<table>
 				<tbody>
 <?php
+		$class = '';
 		$position = 0;
 		$position_previous = 0;
 
 		foreach ($rankings->results as $id => $result)
 		{
+			$class = ($result->wins >= $result->losses)? 'positive' : 'negative';
 			$position = $result->position;
 ?>
-					<tr data-wins="<?= $result->wins ?>" data-losses="<?= $result->losses ?>" data-games-behind="<?= $result->games_behind ?>">
+					<tr class="<?= $class ?>" data-wins-losses="<?= $result->wins, '-', $result->losses ?>" data-games-behind="<?= $result->games_behind ?>">
 						<th><?= ($position !== $position_previous)? $position . '.' : '' ?></th>
 						<td><?= $result->name ?></td>
 					</tr>
