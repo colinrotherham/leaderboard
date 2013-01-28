@@ -49,6 +49,7 @@
 			// Build up results objects
 			while ($win = $this->results_wins->fetch_object())
 			{
+				// Create new score object for wins
 				$result = new GameScore($win->name);
 				$result->scores($win->wins, 0);
 
@@ -59,9 +60,9 @@
 			// Append losses
 			while ($loss = $this->results_losses->fetch_object())
 			{
-				// Ignore if this person has never won a game
+				// Never won a game, create new score object
 				if (empty($this->results[$loss->id]))
-					continue;
+					$this->results[$loss->id] = new GameScore($loss->name);
 
 				$result = $this->results[$loss->id];
 				$result->scores($result->wins, $loss->losses);
