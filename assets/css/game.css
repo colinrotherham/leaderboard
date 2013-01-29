@@ -14,6 +14,7 @@
 		padding: 3.125%;
 
 		font-family: 'brandon-grotesque', Helvetica, Arial;
+		line-height: 1.3em;
 		color: #373737;
 
 		text-rendering: optimizeLegibility;
@@ -66,7 +67,7 @@
 	
 	h2
 	{
-		margin: 0 0 10px;
+		margin: 0 0 25px;
 	}
 	
 	p
@@ -112,7 +113,7 @@
 	{
 		width: 215px;
 
-		margin-bottom: 10px;
+		margin-top: -15px;
 		padding: 10px 0;
 
 		background: #F1F1CB;
@@ -128,7 +129,7 @@
 	.ranking table th,
 	.ranking table td
 	{
-		padding: 3px 4px;
+		padding: 4px;
 	}
 	
 	.ranking table tr.negative th,
@@ -157,6 +158,16 @@
 		-moz-transition: opacity 0.15s ease-in-out;
 		-o-transition: opacity 0.15s ease-in-out;
 		transition: opacity 0.15s ease-in-out;
+	}
+	
+	.placeholder p
+	{
+		padding: 0 15%;
+	}
+	
+	.placeholder button
+	{
+		margin-top: 10px;
 	}
 	
 	.reload
