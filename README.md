@@ -16,7 +16,8 @@ Running the leaderboard
 * Import the database structure + dummy content from:
 
 ```
-	/leaderboard.sql
+	/leaderboard, structure.sql
+	/leaderboard, content.sql
 ```
 
 * Set up a new Apache website, point to the root of this project

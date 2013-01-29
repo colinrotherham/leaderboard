@@ -14,7 +14,7 @@
 	App::$name = 'Metro Mario';
 	
 	// Set app version string
-	App::$version = '1.0';
+	App::$version = '1.1';
 
 	// MySQL connection settings
 	App::$credentials->host = 'localhost';

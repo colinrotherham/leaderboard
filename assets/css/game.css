@@ -9,7 +9,7 @@
 
 	body
 	{
-		max-width: 580px;
+		max-width: 500px;
 		margin: 5px auto 0;
 		padding: 3.125%;
 
@@ -74,12 +74,13 @@
 		margin: -0.5em 0 0.5em;
 	}
 	
-	@media (min-width: 465px)
+	@media (min-width: 400px)
 	{
 		body
 		{
-			padding-top: 10%;
-			padding-bottom: 10%;
+			margin: 0 auto;
+			padding-top: 6%;
+			padding-bottom: 6%;
 		}
 	
 		h1
@@ -109,29 +110,37 @@
 	
 	.ranking table
 	{
-		width: 100%;
-		max-width: 216px;
+		width: 215px;
 
 		margin-bottom: 10px;
-		padding: 10px;
+		padding: 10px 0;
 
 		background: #F1F1CB;
-		border: 2px dashed #D6A425;
 		border-radius: 10px;
 		border-spacing: 0;
+	}
+	
+	.ranking-weekly table
+	{
+		background: #ECECE3;
 	}
 
 	.ranking table th,
 	.ranking table td
 	{
-		padding: 1.5% 0;
+		padding: 3px 4px;
+	}
+	
+	.ranking table tr.negative th,
+	.ranking table tr.negative td
+	{
+		opacity: 0.6;
 	}
 
 	.ranking table th
 	{
 		width: 10%;
-		padding-right: 5%;
-		
+		min-width: 25px;
 		text-align: right;
 	}
 	
@@ -186,25 +195,34 @@
 		transition-duration: 0.75s;
 	}
 
-	@media (min-width: 465px)
+	@media (min-width: 400px)
 	{
 		.ranking
 		{
 			float: left;
-
-			width: 46%;
-			margin: 0 2%;
+			width: 49.5%;
 			
 			text-align: center;
 		}
 		
+		.ranking + .ranking
+		{
+			margin-left: 1%;
+		}
+		
 		.ranking table
 		{
-			width: 90%;
-			max-width: none;
+			width: 100%;
 		
 			margin-right: auto;
 			margin-left: auto;
+
+			border-radius: 10px 0 0 10px;
+		}
+		
+		.ranking-weekly table
+		{
+			border-radius: 0 10px 10px 0;
 		}
 
 		.ranking table th
@@ -279,7 +297,7 @@
 		transition-timing-function: ease-in;
 	}
 
-	@media (max-width: 465px)
+	@media (max-width: 400px)
 	{
 		.spinner.drop
 		{
@@ -290,7 +308,7 @@
 		}
 	}
 
-	@media (min-width: 465px)
+	@media (min-width: 400px)
 	{
 		.spinner
 		{
@@ -401,7 +419,7 @@
 		margin: 0;
 	}
 
-	@media (min-width: 465px)
+	@media (min-width: 400px)
 	{
 		.popup
 		{
@@ -476,7 +494,7 @@
 		margin: 10px 0 0;
 	}
 	
-	@media (min-width: 465px)
+	@media (min-width: 400px)
 	{
 		form div
 		{

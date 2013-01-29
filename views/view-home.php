@@ -36,13 +36,13 @@
 	
 				<!-- Totals, all-time -->
 				<div class="ranking ranking-total" data-src="/leaderboard/all-time/">
-					<p class="spinner busy"><span class="icon"></span> Loading all-time</p>
+					<p class="spinner busy"><span class="icon"></span> Loading…</p>
 					<div class="placeholder"></div>
 				</div>
 	
 				<!-- Totals, this week -->
 				<div class="ranking ranking-weekly" data-src="/leaderboard/weekly/">
-					<p class="spinner busy"><span class="icon"></span> Loading weekly</p>
+					<p class="spinner busy"><span class="icon"></span> Loading…</p>
 					<div class="placeholder"></div>
 				</div>
 			</div>
