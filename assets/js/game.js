@@ -104,13 +104,22 @@
 			errorDuplicate = $('#error-duplicate');
 			errorDatabase = $('#error-database');
 
-			// Input fields
-			winner = $('#winner');
-			loser = $('#loser');
+			initFields();
+			initEvents();
 
 			// Save HTML for later
 			formHTML = form.html();
+		}
 
+		function initFields()
+		{
+			// Input fields
+			winner = $('#winner');
+			loser = $('#loser');
+		}
+
+		function initEvents()
+		{
 			// Wire up new game dialogue
 			popup.on('click', '.close', close);
 			popup.on('click', '.new-player', createPlayer);
@@ -121,11 +130,18 @@
 			// Form submit
 			//$('form').submit(createGame);
 		}
-
-		function open(event)
+		
+		function reset()
 		{
 			form.html(formHTML);
 			errors.hide();
+			
+			initFields();
+		}
+
+		function open(event)
+		{
+			reset();
 
 			popup.css('display', 'block');
 			main.addClass('mask');
@@ -133,7 +149,8 @@
 			// Fade in using CSS
 			setTimeout(function()
 			{
-				popup.addClass('show').attr('tabindex', '-1').focus();
+				popup.addClass('show');
+				winner.focus();
 
 			}, 50);
 
