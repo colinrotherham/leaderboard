@@ -14,12 +14,13 @@
 		private $results_wins;
 		private $results_losses;
 
+		private $app;
 		private $database;
 
-		public function __construct()
+		public function __construct($app)
 		{
-			$this->database = new \CRD\Core\Database();
-			$this->database->Connect();
+			$this->app = $app;
+			$this->app->database->Connect();
 
 			$this->query();
 
@@ -37,11 +38,11 @@
 		private function query()
 		{
 			// Optional WHERE clause when narrowing to current week
-			$where_clause = (SHOW_ALL)? '' : \CRD\Core\App::$queries->clause_week;
+			$where_clause = (SHOW_ALL)? '' : $this->app->queries->clause_week;
 
 			// Database results
-			$this->results_wins = $this->database->Query(sprintf(\CRD\Core\App::$queries->wins, $where_clause));
-			$this->results_losses = $this->database->Query(sprintf(\CRD\Core\App::$queries->losses, $where_clause));
+			$this->results_wins = $this->app->database->Query(sprintf($this->app->queries->wins, $where_clause));
+			$this->results_losses = $this->app->database->Query(sprintf($this->app->queries->losses, $where_clause));
 		}
 
 		public function results()

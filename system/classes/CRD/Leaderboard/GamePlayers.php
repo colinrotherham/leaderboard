@@ -9,17 +9,17 @@
 
 	class GamePlayers
 	{
-		private $database;
+		private $app;
 		public $list = array();
-	
-		public function __construct()
+
+		public function __construct($app)
 		{
-			$this->database = new \CRD\Core\Database();
-			$this->database->Connect();
-			
+			$this->app = $app;
+			$this->app->database->Connect();
+
 			// Database players
-			$players = $this->database->Query(\CRD\Core\App::$queries->players);
-			
+			$players = $this->app->database->Query($this->app->queries->players);
+
 			// Build up results objects
 			while ($player = $players->fetch_object())
 			{

@@ -1,4 +1,6 @@
 <?php
+	namespace CRD\Core;
+
 	require_once ('../system/config/classes.php');
 
 	use \CRD\Leaderboard\GameRankings as GameRankings;
@@ -7,7 +9,7 @@
 	define('SHOW_ALL', (isset($_GET['all']))? true : false);
 	
 	// Build ranks	
-	$rankings = new GameRankings();
+	$rankings = new GameRankings($app);
 	
 	$title = (SHOW_ALL)? 'All-time' : 'This week';
 	$no_results = (SHOW_ALL)? 'There have been no games yet' : 'There have been no games this week';
