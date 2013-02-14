@@ -6,12 +6,12 @@
 	{
 		// Overridden when resizing
 		isMobile: true,
-		
+
 		resize: function()
 		{
 			MM.isMobile = ($(window).width() < 465)? true : false;
 		},
-		
+
 		resizeDelay: function()
 		{
 			if (MM.resizeTimer)
@@ -21,7 +21,7 @@
 
 			MM.resizeTimer = setTimeout(MM.resize, 500);
 		},
-		
+
 		init: function()
 		{
 			// Update isMobile
@@ -30,9 +30,10 @@
 		}
 	};
 
-	MM.GameRanking = function(i, element)
+	MM.GameLeaderboard = function(i, element)
 	{
 		var self = this;
+
 		var parent, placeholder, spinner;
 
 		function init()
@@ -52,11 +53,11 @@
 
 			}, (MM.isMobile)? 300 : (i + 1) * 300);
 		}
-		
+
 		function update()
 		{
 			spinner.addClass('drop');
-		
+
 			setTimeout(function()
 			{
 				placeholder.load(parent.data('src'), function()
@@ -67,7 +68,7 @@
 
 			}, 150);
 		}
-		
+
 		function reload(event)
 		{
 			parent.removeClass('loaded');
@@ -76,34 +77,25 @@
 			setTimeout(function() { spinner.show(); }, 200);
 			setTimeout(function() { spinner.removeClass('drop'); }, 250);
 			setTimeout(function() { update(parent, placeholder, spinner); }, 1000);
-			
+
 			event.preventDefault();
 		}
-		
+
 		init();
 	};
-	
-	MM.Game = function()
+
+	MM.GameDialogue = function(main, rankings)
 	{
 		var self = this;
 
-		var main, rankings, popup, form;
-		var errors, errorGeneric, errorPlayer;
-
+		var popup, form, formHTML;
+		var errors, errorGeneric, errorMissing, errorDuplicate, errorDatabase;
 		var winner, loser;
-
-		var formHTML;
 
 		function init()
 		{
-			main = $('#main');
-			rankings = $('.ranking');
 			popup = $('.popup');
 			form = $('form');
-
-			// Input fields
-			winner = $('#winner');
-			loser = $('#loser');
 
 			// Individual errors
 			errors = popup.find('.error');
@@ -112,42 +104,64 @@
 			errorDuplicate = $('#error-duplicate');
 			errorDatabase = $('#error-database');
 
+			initFields();
+			initEvents();
+
 			// Save HTML for later
 			formHTML = form.html();
-	
-			// Wire up AJAX ranking
-			rankings.each(function(i, element) { new MM.GameRanking(i, element); });
-	
-			// Wire up events
-			rankings.on('click', '.add', open);
+		}
+
+		function initFields()
+		{
+			// Input fields
+			winner = $('#winner');
+			loser = $('#loser');
+		}
+
+		function initEvents()
+		{
+			// Wire up new game dialogue
 			popup.on('click', '.close', close);
 			popup.on('click', '.new-player', createPlayer);
-	
+
+			// invoke dialogue when button clicked
+			rankings.on('click', '.add', open);
+
 			// Form submit
 			//$('form').submit(createGame);
 		}
 		
-		function open(event)
+		function reset()
 		{
 			form.html(formHTML);
 			errors.hide();
 			
+			initFields();
+		}
+
+		function open(event)
+		{
+			reset();
+
 			popup.css('display', 'block');
 			main.addClass('mask');
 
 			// Fade in using CSS
 			setTimeout(function()
 			{
-				popup.addClass('show').attr('tabindex', '-1').focus();
+				popup.addClass('show');
+				winner.focus();
 
 			}, 50);
+
+			event.preventDefault();
 		}
-		
+
 		function close(event)
 		{
 			popup.removeClass('show');
 			main.removeClass('mask');
-			
+
 			// Hide using JS
 			setTimeout(function()
 			{
@@ -155,10 +169,10 @@
 				$('button.add').focus();
 
 			}, 200);
-			
+
 			event.preventDefault();
 		}
-		
+
 		function createPlayer(event)
 		{
 			var link = $(this);
@@ -170,7 +184,7 @@
 			{
 				case 'winner':
 				winner = input; break;
-				
+
 				case 'loser':
 				loser = input; break;
 			}
@@ -186,13 +200,27 @@
 
 			event.preventDefault();
 		}
-		
+
 		function createGame(event)
 		{
 			event.preventDefault();
 		}
-		
+
 		init();
+	};
+
+	MM.Game = function()
+	{
+		var self = this;
+
+		var main = $('#main');
+		var rankings = $('.ranking');
+
+		// Wire up AJAX ranking
+		rankings.each(function(i, element) { new MM.GameLeaderboard(i, element); });
+
+		// Set up new game dialogue
+		new MM.GameDialogue(main, rankings);
 	};
 
 	// Init MM helper

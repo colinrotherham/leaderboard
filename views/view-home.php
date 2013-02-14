@@ -47,7 +47,7 @@
 			</div>
 			
 			<!-- Add game -->
-			<div class="popup<?= ($is_invalid)? ' show' : '' ?>">
+			<div class="popup<?= ($is_invalid)? ' show' : '' ?>" role="alertdialog">
 				<button class="close">x</button>
 			
 				<h2>Add game</h2>
