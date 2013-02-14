@@ -11,11 +11,11 @@
 	{
 		private $database;
 		private $players;
-	
-		public function __construct()
+
+		public function __construct($app)
 		{
-			$this->database = new \CRD\Core\Database();
-			$this->database->Connect();
+			$this->app = $app;
+			$this->app->database->Connect();
 
 			// Handle POSTs
 			if (!empty($_POST))
@@ -44,8 +44,8 @@
 		private function create($winner, $loser)
 		{
 			// Save game
-			$submit_query = sprintf(\CRD\Core\App::$queries->add_game, $winner, $loser);
-			$submit_result = $this->database->Query($submit_query);
+			$submit_query = sprintf($this->app->queries->add_game, $winner, $loser);
+			$submit_result = $this->app->database->Query($submit_query);
 
 			// Row added?
 			if ($submit_result)
@@ -88,7 +88,7 @@
 		private function playerCheckId($player_id)
 		{
 			if (!is_object($this->players))
-				$this->players = new GamePlayers();
+				$this->players = new GamePlayers($this->app);
 
 			// Convert to int
 			$player_id = intval($player_id);
@@ -105,7 +105,7 @@
 		private function playerCheckString($player)
 		{
 			if (!is_object($this->players))
-				$this->players = new GamePlayers();
+				$this->players = new GamePlayers($this->app);
 
 			if (in_array($player, $this->players->list))
 			{
@@ -116,8 +116,8 @@
 			else
 			{
 				// Add player
-				$player_submit = $this->database->Query(sprintf(\CRD\Core\App::$queries->add_player, $this->database->Escape($player)));
-				$player = $this->database->connection->insert_id;
+				$player_submit = $this->app->database->Query(sprintf($this->app->queries->add_player, $this->app->database->Escape($player)));
+				$player = $this->app->database->connection->insert_id;
 				
 				if (empty($player))
 				{

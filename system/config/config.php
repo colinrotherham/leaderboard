@@ -4,30 +4,35 @@
 	Application config
 	----------------------------------- */
 
-	use \CRD\Core\App as App;
-	use \CRD\Core\Resource as Resource;
+	namespace CRD\Core;
 
 	// Default timezone
 	date_default_timezone_set('Europe/London');
 
 	// App name, also cache prefix
-	App::$name = 'Metro Mario';
+	$app->name = 'Metro Mario';
 	
 	// Set app version string
-	App::$version = '1.1';
-
+	$app->version = '1.2';
+	
 	// MySQL connection settings
-	App::$credentials->host = 'localhost';
-	App::$credentials->database = 'leaderboard';
-	App::$credentials->username = 'sample';
-	App::$credentials->password = 'password';
+	$app->credentials->host = 'localhost';
+	$app->credentials->database = 'leaderboard';
+	$app->credentials->username = 'sample';
+	$app->credentials->password = 'password';
 
 	// Page templates
-	App::$templates = array
+	$app->templates = array
 	(
 		'page'		=> '/templates/template-page.php'
 	);
+	
+	// Page partials
+	$app->partials = array
+	(
+		'address'	=> '/views/partials/partial-address.php'
+	);
 
 	// Set up locale
-	Resource::locale('en-GB');
+	$app->resources->locale('en-GB');
 ?>

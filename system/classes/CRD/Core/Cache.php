@@ -9,41 +9,48 @@
 
 	class Cache
 	{
-		public static function get($cache_name)
+		private $app;
+
+		public function __construct($app)
+		{
+			$this->app = $app;
+		}
+	
+		public function get($cache_name)
 		{
 			$success = false;
 			$cache_value = null;
 
-			if (function_exists('apc_fetch') && App::$cache_enabled)
+			if (function_exists('apc_fetch') && $this->app->cache_enabled)
 			{
-				$cache_value = apc_fetch(App::$name . ' ' . $cache_name, $success);
+				$cache_value = apc_fetch($this->app->name . ' ' . $cache_name, $success);
 				if ($success) return $cache_value;
 			}
 			
 			return false;
 		}
 
-		public static function set($cache_name, $cache_value)
+		public function set($cache_name, $cache_value)
 		{
-			if (function_exists('apc_store') && App::$cache_enabled)
+			if (function_exists('apc_store') && $this->app->cache_enabled)
 			{
-				return apc_store(App::$name . ' ' . $cache_name, $cache_value, App::$cache_length);
+				return apc_store($this->app->name . ' ' . $cache_name, $cache_value, $this->app->cache_length);
 			}
 			
 			return false;
 		}
 		
-		public static function delete($cache_name)
+		public function delete($cache_name)
 		{
-			if (function_exists('apc_delete') && App::$cache_enabled)
+			if (function_exists('apc_delete') && $this->app->cache_enabled)
 			{
-				return apc_delete(App::$name . ' ' . $cache_name);
+				return apc_delete($this->app->name . ' ' . $cache_name);
 			}
 			
 			return false;
 		}
 		
-		public static function clear()
+		public function clear()
 		{
 			apc_clear_cache('user');
 		}

@@ -5,13 +5,13 @@
 	https://github.com/colinrotherham
 */
 
-	use \CRD\Core\App as App;
+	namespace CRD\Core;
 
 	// Narrow to current week
-	App::$queries->clause_week = "WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)";
+	$app->queries->clause_week = "WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)";
 
 	// Wins
-	App::$queries->wins = "
+	$app->queries->wins = "
 
 		SELECT
 		
@@ -29,7 +29,7 @@
 	";
 
 	// Losses
-	App::$queries->losses = "
+	$app->queries->losses = "
 
 		SELECT
 
@@ -47,7 +47,7 @@
 	";
 	
 	// Players
-	App::$queries->players = "
+	$app->queries->players = "
 	
 		SELECT
 			
@@ -59,14 +59,14 @@
 	";
 	
 	// Add game
-	App::$queries->add_game = "
+	$app->queries->add_game = "
 	
 		INSERT INTO games (winnerId, loserId)
 		VALUES(%s, %s)
 	";
 	
 	// Add player
-	App::$queries->add_player = "
+	$app->queries->add_player = "
 	
 		REPLACE INTO players (name)
 		VALUES('%s')
