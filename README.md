@@ -10,7 +10,7 @@ Running the leaderboard
 * Set up a new MySQL database and configure credentials here:
 
 ```
-	/system/config/config.php
+	/config.php
 ```
 
 * Import the database structure + dummy content from:

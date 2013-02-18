@@ -1,7 +1,7 @@
 <?php
 	namespace CRD\Core;
 
-	require_once ('../system/config/classes.php');
+	require_once ('../engine/start.php');
 
 	use \CRD\Leaderboard\GameRankings as GameRankings;
 
