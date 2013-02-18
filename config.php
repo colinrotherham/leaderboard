@@ -29,10 +29,7 @@
 	(
 		'page'		=> '/templates/template-page.php'
 	);
-	
-	// Page partials
-	$app->partials = array
-	(
-		'address'	=> '/views/partials/partial-address.php'
-	);
+
+	// Add queries config
+	require_once ($path . '/config.queries.php');
 ?>
