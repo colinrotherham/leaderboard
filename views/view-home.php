@@ -1,16 +1,13 @@
 <?php
 	namespace CRD\Core;
 
-	require_once ('../engine/start.php');
-
 	use \CRD\Leaderboard\GamePlayers as GamePlayers;
 	use \CRD\Leaderboard\GameError as GameError;
 
-	$players = new GamePlayers($app);
-	$template = new Template($app, 'page', 'page-home');
+	$players = new GamePlayers($this->app);
 
 	// Start placeholder
-	$template->placeHolder('main');	
+	$this->template->placeHolder('main');
 
 	// An error occurred?
 	$is_invalid = (isset($_GET['error']))? true : false;
@@ -94,5 +91,5 @@
 			</div>
 <?php
 	// End placeholder
-	$template->placeHolderEnd();
+	$this->template->placeHolderEnd();
 ?>

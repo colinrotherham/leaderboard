@@ -1,18 +1,12 @@
 <?php
 	namespace CRD\Core;
 
-	require_once ('../engine/start.php');
+	// Build ranks
+	$rank_all = (!empty($this->bag['all']))? true : false;
+	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_all);
 
-	use \CRD\Leaderboard\GameRankings as GameRankings;
-
-	// All times or just weekly?
-	define('SHOW_ALL', (isset($_GET['all']))? true : false);
-	
-	// Build ranks	
-	$rankings = new GameRankings($app);
-	
-	$title = (SHOW_ALL)? 'All-time' : 'This week';
-	$no_results = (SHOW_ALL)? 'There have been no games yet' : 'There have been no games this week';
+	$title = ($rank_all)? 'All-time' : 'This week';
+	$no_results = ($rank_all)? 'There have been no games yet' : 'There have been no games this week';
 ?>
 			<h2><a href="#reload" class="reload" role="button">Reload</a> <?= $title ?></h2>
 
@@ -55,7 +49,7 @@
 	}
 	
 	// Show add button
-	if (!SHOW_ALL)
+	if (!$rank_all)
 	{
 ?>
 			<button class="add">+ Add game</button>

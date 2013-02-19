@@ -16,11 +16,16 @@
 
 		private $app;
 		private $database;
+		
+		private $rank_all;
 
-		public function __construct($app)
+		public function __construct($app, $rank_all = true)
 		{
 			$this->app = $app;
 			$this->app->database->Connect();
+
+			// Rank all or just weekly?
+			$this->rank_all = $rank_all;
 
 			$this->query();
 
@@ -38,7 +43,7 @@
 		private function query()
 		{
 			// Optional WHERE clause when narrowing to current week
-			$where_clause = (SHOW_ALL)? '' : $this->app->queries->clause_week;
+			$where_clause = ($this->rank_all)? '' : $this->app->queries->clause_week;
 
 			// Database results
 			$this->results_wins = $this->app->database->Query(sprintf($this->app->queries->wins, $where_clause));
