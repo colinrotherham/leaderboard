@@ -28,7 +28,7 @@
 ?>
 			<div id="main" role="main"<?= ($is_invalid)? ' class="mask"' : '' ?>>
 
-				<h1>Metro Mario</h1>
+				<h1>Leaderboard</h1>
 	
 				<!-- Totals, all-time -->
 				<div class="ranking ranking-total" data-src="/leaderboard/all-time/">
@@ -50,7 +50,7 @@
 				<h2>Add game</h2>
 
 				<div id="error-generic" class="error<?= ($is_invalid_generic)? ' show': '' ?>">
-					<p>Sorry, we couldn’t add that race. Please try again…</p>
+					<p>Sorry, we couldn’t add that game. Please try again…</p>
 				</div>
 				
 				<div id="error-missing" class="error<?= ($is_invalid_missing)? ' show' : '' ?>">
@@ -62,7 +62,7 @@
 				</div>
 				
 				<div id="error-database" class="error<?= ($is_invalid_database)? ' show' : '' ?>">
-					<p>Sorry, we couldn’t add this race to the database…</p>
+					<p>Sorry, we couldn’t add this game to the database…</p>
 				</div>
 
 				<form method="post" action="/game/add/">
