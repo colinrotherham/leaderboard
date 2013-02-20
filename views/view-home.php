@@ -28,7 +28,7 @@
 ?>
 			<div id="main" role="main"<?= ($is_invalid)? ' class="mask"' : '' ?>>
 
-				<h1>Mario Kart</h1>
+				<h1>Metro Mario</h1>
 	
 				<!-- Totals, all-time -->
 				<div class="ranking ranking-total" data-src="/leaderboard/all-time/">
