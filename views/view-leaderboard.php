@@ -6,7 +6,7 @@
 	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_all);
 
 	$title = ($rank_all)? 'All-time' : 'This week';
-	$no_results = ($rank_all)? 'There have been no games yet' : 'There have been no games this week';
+	$no_results = ($rank_all)? 'There have been no races yet' : 'There have been no races this week';
 ?>
 			<h2><a href="#reload" class="reload" role="button">Reload</a> <?= $title ?></h2>
 
@@ -52,7 +52,7 @@
 	if (!$rank_all)
 	{
 ?>
-			<button class="add">+ Add game</button>
+			<button class="add">+ Add race</button>
 <?php
 	}
 ?>
