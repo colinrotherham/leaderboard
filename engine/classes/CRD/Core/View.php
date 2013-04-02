@@ -19,7 +19,7 @@
 		public $partials = array();
 
 		// Shared array for passing from route action to view
-		public $bag = array();
+		public $bag;
 	
 		public function __construct($app, $name, $action)
 		{
@@ -27,12 +27,23 @@
 			$this->name = $name;
 			$this->action = $action;
 
+			if (!empty($this->name) && !file_exists($this->location()))
+				throw new \Exception('Checking view: Missing view file');
+
 			// Allow views to access templates/partials
 			$this->templates = $app->templates;
 			$this->partials = $app->partials;
-			
+
 			// Provide caching helper
 			$this->cache = $app->cache;
+
+			// Make view bag an object
+			$this->bag = (object) array();
+		}
+		
+		public function location()
+		{
+			return $this->app->path . '/views/' . $this->name . '.php';
 		}
 		
 		public function render()
@@ -44,8 +55,9 @@
 				$action($this);
 			}
 
-			// Present view
-			require_once ($this->app->path . '/views/view-' . $this->name . '.php');
+			// Present view if provided
+			if (!empty($this->name))
+				require_once ($this->location());
 		}
 	}
 ?>

@@ -13,10 +13,10 @@
 	$app = new App($path);
 
 	// App name, also cache prefix
-	$app->name = 'Metro Mario';
+	$app->name = 'Leaderboard';
 	
 	// Set app version string
-	$app->version = '1.2';
+	$app->version = '1.3';
 	
 	// MySQL connection settings
 	$app->credentials->host = 'localhost';
