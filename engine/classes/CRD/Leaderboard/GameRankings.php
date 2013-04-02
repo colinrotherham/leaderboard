@@ -42,12 +42,13 @@
 
 		private function query()
 		{
-			// Optional WHERE clause when narrowing to current week
-			$where_clause = ($this->rank_all)? '' : $this->app->queries->clause_week;
+			// Current week or all
+			$query_wins = ($this->rank_all)? $this->app->queries->wins : $this->app->queries->wins_week;
+			$query_losses = ($this->rank_all)? $this->app->queries->losses : $this->app->queries->losses_week;
 
 			// Database results
-			$this->results_wins = $this->app->database->Query(sprintf($this->app->queries->wins, $where_clause));
-			$this->results_losses = $this->app->database->Query(sprintf($this->app->queries->losses, $where_clause));
+			$this->results_wins = $this->app->database->Query($query_wins);
+			$this->results_losses = $this->app->database->Query($query_losses);
 		}
 
 		public function results()

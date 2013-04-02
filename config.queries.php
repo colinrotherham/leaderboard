@@ -6,10 +6,7 @@
 
 	namespace CRD\Core;
 
-	// Narrow to current week
-	$app->queries->clause_week = "WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)";
-
-	// Wins
+	// Base wins
 	$app->queries->wins = "
 
 		SELECT
@@ -27,7 +24,7 @@
 		ORDER BY players.id DESC
 	";
 
-	// Losses
+	// Base losses
 	$app->queries->losses = "
 
 		SELECT
@@ -44,7 +41,15 @@
 		GROUP BY players.id
 		ORDER BY players.id DESC
 	";
-	
+
+	// Create weekly queries
+	$app->queries->wins_week = sprintf($app->queries->wins, 'WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)');
+	$app->queries->losses_week = sprintf($app->queries->losses, 'WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)');
+
+	// Create all-time queries
+	$app->queries->wins = sprintf($app->queries->wins, '');
+	$app->queries->losses = sprintf($app->queries->losses, '');
+
 	// Players
 	$app->queries->players = "
 	
