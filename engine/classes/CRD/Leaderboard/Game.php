@@ -130,12 +130,12 @@
 		
 		private function success()
 		{
-			\CRD\Core\Redirect::to('/');
+			$this->app->redirect->to('/');
 		}
 		
 		private function fail($type)
 		{
-			\CRD\Core\Redirect::to('/?error=' . $type);
+			$this->app->redirect->to('/?error=' . $type);
 		}
 	}
 ?>
