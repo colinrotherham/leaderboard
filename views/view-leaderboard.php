@@ -2,7 +2,7 @@
 	namespace CRD\Core;
 
 	// Build ranks
-	$rank_all = (!empty($this->bag['all']))? true : false;
+	$rank_all = (!empty($this->bag->all))? true : false;
 	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_all);
 
 	$title = ($rank_all)? 'All-time' : 'This week';
