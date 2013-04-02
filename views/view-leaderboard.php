@@ -2,11 +2,11 @@
 	namespace CRD\Core;
 
 	// Build ranks
-	$rank_all = (!empty($this->bag->all))? true : false;
-	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_all);
+	$rank_weekly = (!empty($this->bag->weekly))? true : false;
+	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_weekly);
 
-	$title = ($rank_all)? 'All-time' : 'This week';
-	$no_results = ($rank_all)? 'There have been no races yet' : 'There have been no races this week';
+	$title = (!$rank_weekly)? 'Last 30 days' : 'This week';
+	$no_results = (!$rank_weekly)? 'There have been no races in the last 30 days' : 'There have been no races this week';
 ?>
 			<h2><a href="#reload" class="reload" role="button">Reload</a> <?= $title ?></h2>
 
@@ -49,7 +49,7 @@
 	}
 	
 	// Show add button
-	if (!$rank_all)
+	if ($rank_weekly)
 	{
 ?>
 			<button class="add">+ Add race</button>
