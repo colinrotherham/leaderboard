@@ -2,7 +2,7 @@ Game Rankings
 =============
 
 This is an AJAX-driven leaderboard app (built on Tiny Engine, https://github.com/colinrotherham/tiny-engine/)
-for ranking "All Time" and "Weekly" plays for most two-player games.
+for ranking "Last 30 Days" and "Weekly" plays for most two-player games.
 
 Running the leaderboard
 -----------------------

@@ -17,15 +17,15 @@
 		private $app;
 		private $database;
 		
-		private $rank_all;
+		private $rank_weekly;
 
-		public function __construct($app, $rank_all = true)
+		public function __construct($app, $rank_weekly = false)
 		{
 			$this->app = $app;
 			$this->app->database->Connect();
 
-			// Rank all or just weekly?
-			$this->rank_all = $rank_all;
+			// Rank default or just weekly?
+			$this->rank_weekly = $rank_weekly;
 
 			$this->query();
 
@@ -42,9 +42,9 @@
 
 		private function query()
 		{
-			// Current week or all
-			$query_wins = ($this->rank_all)? $this->app->queries->wins : $this->app->queries->wins_week;
-			$query_losses = ($this->rank_all)? $this->app->queries->losses : $this->app->queries->losses_week;
+			// Current week or default
+			$query_wins = (!$this->rank_weekly)? $this->app->queries->wins : $this->app->queries->wins_week;
+			$query_losses = (!$this->rank_weekly)? $this->app->queries->losses : $this->app->queries->losses_week;
 
 			// Database results
 			$this->results_wins = $this->app->database->Query($query_wins);

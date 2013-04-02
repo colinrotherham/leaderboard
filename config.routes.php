@@ -18,13 +18,13 @@
 	// Weekly leaderboard
 	$app->router->add('/leaderboard/weekly/', array('view-leaderboard'), function($view)
 	{
-		$view->bag->all = false;
+		$view->bag->weekly = true;
 	});
 
-	// All-time leaderboard
-	$app->router->add('/leaderboard/all-time/', array('view-leaderboard'), function($view)
+	// Default leaderboard
+	$app->router->add('/leaderboard/default/', array('view-leaderboard'), function($view)
 	{
-		$view->bag->all = true;
+		$view->bag->weekly = false;
 	});
 
 	// Add game

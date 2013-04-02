@@ -46,9 +46,9 @@
 	$app->queries->wins_week = sprintf($app->queries->wins, 'WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)');
 	$app->queries->losses_week = sprintf($app->queries->losses, 'WHERE YEARWEEK(modified,1) = YEARWEEK(NOW(),1)');
 
-	// Create all-time queries
-	$app->queries->wins = sprintf($app->queries->wins, '');
-	$app->queries->losses = sprintf($app->queries->losses, '');
+	// Create default queries
+	$app->queries->wins = sprintf($app->queries->wins, 'WHERE modified BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW()');
+	$app->queries->losses = sprintf($app->queries->losses, 'WHERE modified BETWEEN DATE_SUB(NOW(), INTERVAL 30 DAY) AND NOW()');
 
 	// Players
 	$app->queries->players = "

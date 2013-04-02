@@ -30,8 +30,8 @@
 
 				<h1>Leaderboard</h1>
 	
-				<!-- Totals, all-time -->
-				<div class="ranking ranking-total" data-src="/leaderboard/all-time/">
+				<!-- Totals, 30-days -->
+				<div class="ranking ranking-total" data-src="/leaderboard/default/">
 					<p class="spinner busy"><span class="icon"></span> Loading…</p>
 					<div class="placeholder"></div>
 				</div>
