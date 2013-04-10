@@ -11,18 +11,21 @@
 	{
 		private $database;
 		private $players;
+		
+		private $is_ajax = false;
 
 		public function __construct($app)
 		{
 			$this->app = $app;
 			$this->app->database->Connect();
 
+			// Is this request AJAX?
+			$this->is_ajax = $this->app->router->is_ajax();
+
 			// Handle POSTs
 			if (!empty($_POST))
-			{
 				$this->submit();
-			}
-			
+
 			// Don't handle
 			else $this->fail(GameError::$generic);
 		}
@@ -58,7 +61,7 @@
 				$this->fail(GameError::$database);
 			}
 		}
-		
+
 		private function playerCheck($player)
 		{
 			if (empty($player))
@@ -130,12 +133,29 @@
 		
 		private function success()
 		{
-			$this->app->redirect->to('/');
+			if ($this->is_ajax)
+			{
+				// Get fresh player list
+				$players = new GamePlayers($this->app);
+
+				// Output JSON
+				echo json_encode(array('success' => true, 'players' => $players->list));
+				exit;
+			}
+
+			else $this->app->redirect->to('/');
 		}
 		
 		private function fail($type)
 		{
-			$this->app->redirect->to('/?error=' . $type);
+			if ($this->is_ajax)
+			{
+				// Output JSON
+				echo json_encode(array('success' => false, 'error' => $type));
+				exit;
+			}
+
+			else $this->app->redirect->to('/?error=' . $type);
 		}
 	}
 ?>
