@@ -46,12 +46,7 @@
 			parent.on('click', '.reload', reload);
 
 			// Delay spinner drop
-			setTimeout(function()
-			{
-				// AJAX leaderboard load
-				update(parent, placeholder, spinner);
-
-			}, (MM.isMobile)? 300 : (i + 1) * 300);
+			reload();
 		}
 
 		function update()
@@ -71,20 +66,41 @@
 
 		function reload(event)
 		{
-			parent.removeClass('loaded');
+			var delay = (MM.isMobile)? 300 : (i + 1) * 300;
 
-			// Show spinner, fade in
-			setTimeout(function() { spinner.show(); }, 200);
-			setTimeout(function() { spinner.removeClass('drop'); }, 250);
-			setTimeout(function() { update(parent, placeholder, spinner); }, 1000);
+			if (event)
+			{
+				// Don't delay clicks, UI feels slow
+				if (event.type === 'click') delay = 0;
 
-			event.preventDefault();
+				// Don't follow click
+				event.preventDefault();
+			}
+
+			// 2nd load?
+			if (parent.hasClass('loaded'))
+			{
+				parent.removeClass('loaded');
+
+				// Show spinner, fade in
+				setTimeout(function() { spinner.show(); }, 200);
+				setTimeout(function() { spinner.removeClass('drop'); }, 250);
+
+				// Delay AJAX
+				delay += 1000;
+			}
+
+			// AJAX update
+			setTimeout(update, delay);
 		}
+
+		// Make reload method public
+		self.reload = reload;
 
 		init();
 	};
 
-	MM.GameDialogue = function(main, rankings)
+	MM.GameDialogue = function(main, rankings, leaderboards)
 	{
 		var self = this;
 
@@ -99,10 +115,12 @@
 
 			// Individual errors
 			errors = popup.find('.error');
-			errorGeneric = $('#error-generic');
-			errorMissing = $('#error-missing');
-			errorDuplicate = $('#error-duplicate');
-			errorDatabase = $('#error-database');
+			errorsList = [];
+			
+			errorsList['generic'] = $('#error-generic');
+			errorsList['missing'] = $('#error-missing');
+			errorsList['duplicate'] = $('#error-duplicate');
+			errorsList['database'] = $('#error-database');
 
 			initFields();
 			initEvents();
@@ -122,13 +140,13 @@
 		{
 			// Wire up new game dialogue
 			popup.on('click', '.close', close);
-			popup.on('click', '.new-player', createPlayer);
+			popup.on('click', '.new-player', playerCreate);
 
 			// invoke dialogue when button clicked
 			rankings.on('click', '.add', open);
 
 			// Form submit
-			//$('form').submit(createGame);
+			form.submit(gameCreate);
 		}
 		
 		function reset()
@@ -154,10 +172,10 @@
 
 			}, 50);
 
-			event.preventDefault();
+			if (event) event.preventDefault();
 		}
 
-		function close(event)
+		function close(event, callback)
 		{
 			popup.removeClass('show');
 			main.removeClass('mask');
@@ -168,12 +186,15 @@
 				popup.hide();
 				$('button.add').focus();
 
+				// Optional callback? E.g. Update players
+				if (callback) callback();
+
 			}, 200);
 
-			event.preventDefault();
+			if (event) event.preventDefault();
 		}
 
-		function createPlayer(event)
+		function playerCreate(event)
 		{
 			var link = $(this);
 			var select = link.parent().next();
@@ -198,12 +219,72 @@
 
 			}, 50);
 
-			event.preventDefault();
+			if (event) event.preventDefault();
 		}
 
-		function createGame(event)
+		function playerUpdate(list)
 		{
-			event.preventDefault();
+			reset();
+
+			// Create new player list with 'Please select' option
+			var fragment = document.createDocumentFragment();
+			fragment.innerHTML = '<option>' + winner.children('option').first().html() + '</option>';
+
+			// Add each player to list
+			$.each(list, function(i, player)
+			{
+				fragment.innerHTML += '<option value="' + i + '">' + player + '</option>';
+			});
+
+			// Update with new HTML
+			winner.html(fragment.innerHTML);
+			loser.html(fragment.innerHTML);
+
+			// Save HTML for later
+			formHTML = form.html();
+		}
+
+		function gameCreate(event)
+		{
+			// Submit using AJAX
+			$.ajax(
+			{
+				url: form.attr('action'),
+				data: form.serialize(),
+				dataType: 'json',
+				ifModified: true,
+				type: 'POST',
+
+				// Success handler
+				success: gameCreateSuccess
+			});
+
+			// Don't do regular submit
+			if (event) event.preventDefault();
+		}
+		
+		function gameCreateSuccess(response)
+		{
+			if (response.success)
+			{
+				// Reload all leaderboards
+				$.each(leaderboards, function(i, leaderboard) { leaderboard.reload(); });
+
+				// Close dialogue, update players
+				close(undefined, function() { playerUpdate(response.players); });
+			}
+
+			// AJAX successful but server says fail
+			else gameCreateError(response);
+		}
+		
+		function gameCreateError(response)
+		{
+			errors.hide();
+
+			// Show matching error in UI
+			if (response.error && errorsList[response.error])
+				errorsList[response.error].show();
 		}
 
 		init();
@@ -215,12 +296,16 @@
 
 		var main = $('#main');
 		var rankings = $('.ranking');
+		var leaderboards = [];
 
 		// Wire up AJAX ranking
-		rankings.each(function(i, element) { new MM.GameLeaderboard(i, element); });
+		rankings.each(function(i, element)
+		{
+			leaderboards.push(new MM.GameLeaderboard(i, element));
+		});
 
 		// Set up new game dialogue
-		new MM.GameDialogue(main, rankings);
+		new MM.GameDialogue(main, rankings, leaderboards);
 	};
 
 	// Init MM helper
