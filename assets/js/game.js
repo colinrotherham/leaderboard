@@ -252,7 +252,6 @@
 				url: form.attr('action'),
 				data: form.serialize(),
 				dataType: 'json',
-				ifModified: true,
 				type: 'POST',
 
 				// Success handler
