@@ -106,7 +106,7 @@
 
 		var popup, form, formHTML;
 		var errors, errorGeneric, errorMissing, errorDuplicate, errorDatabase;
-		var winner, loser;
+		var winner, loser, button;
 
 		function init()
 		{
@@ -134,6 +134,7 @@
 			// Input fields
 			winner = $('#winner');
 			loser = $('#loser');
+			button = form.children('button');
 		}
 
 		function initEvents()
@@ -246,6 +247,8 @@
 
 		function gameCreate(event)
 		{
+			button.attr('disabled', 'disabled');
+		
 			// Submit using AJAX
 			$.ajax(
 			{
@@ -270,7 +273,11 @@
 				$.each(leaderboards, function(i, leaderboard) { leaderboard.reload(); });
 
 				// Close dialogue, update players
-				close(undefined, function() { playerUpdate(response.players); });
+				close(undefined, function()
+				{
+					playerUpdate(response.players);
+					button.removeAttr('disabled');
+				});
 			}
 
 			// AJAX successful but server says fail
@@ -280,6 +287,7 @@
 		function gameCreateError(response)
 		{
 			errors.hide();
+			button.removeAttr('disabled');
 
 			// Show matching error in UI
 			if (response.error && errorsList[response.error])
