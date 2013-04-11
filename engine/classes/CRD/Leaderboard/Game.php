@@ -139,13 +139,28 @@
 		{
 			if ($this->is_ajax)
 			{
-				// Get fresh player list
-				$players = new GamePlayers($this->app);
 				$response = array('success' => true);
 
 				// Append updated player list?
 				if ($this->is_new_player)
-					$response['players'] = $players->list;
+				{
+					// Get fresh player list
+					$players = new GamePlayers($this->app);
+
+					/*
+						Browsers don't order object keys consistently,
+						convert keys to string first ('id: N')
+					*/
+
+					$list = array();
+					foreach ($players->list as $id => $player)
+					{
+						$list['id: ' . $id] = $player;
+					}
+
+					// Add to JSON
+					$response['players'] = $list;
+				}
 
 				// Output JSON
 				echo json_encode($response);
