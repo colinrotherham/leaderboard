@@ -32,6 +32,9 @@
 		<script src="/assets/js/3rd-party/typekit-loader.min.js"></script>
 
 		<!-- Leaderboard functionality -->
+		<script src="/assets/js/global.js?cache=<?= urlencode($app->version) ?>"></script>
+		<script src="/assets/js/game-leaderboard.js?cache=<?= urlencode($app->version) ?>"></script>
+		<script src="/assets/js/game-dialogue.js?cache=<?= urlencode($app->version) ?>"></script>
 		<script src="/assets/js/game.js?cache=<?= urlencode($app->version) ?>"></script>
 	</body>
 </html>
