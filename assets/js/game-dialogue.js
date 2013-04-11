@@ -134,9 +134,10 @@
 			fragment.innerHTML = '<option>' + winner.children('option').first().html() + '</option>';
 
 			// Add each player to list
-			$.each(list, function(i, player)
+			$.each(list, function(id, player)
 			{
-				fragment.innerHTML += '<option value="' + i + '">' + player + '</option>';
+				id = id.replace('id: ', '');
+				fragment.innerHTML += '<option value="' + id + '">' + player + '</option>';
 			});
 
 			// Update with new HTML

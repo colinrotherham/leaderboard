@@ -13,14 +13,12 @@
 		private $players;
 		
 		private $is_ajax = false;
+		private $is_new_player = false;
 
 		public function __construct($app)
 		{
 			$this->app = $app;
 			$this->app->database->Connect();
-
-			// Is this request AJAX?
-			$this->is_ajax = $this->app->router->is_ajax();
 
 			// Handle POSTs
 			if (!empty($_POST))
@@ -32,6 +30,9 @@
 		
 		private function submit()
 		{
+			// Is this request AJAX?
+			$this->is_ajax = $this->app->router->is_ajax();
+
 			$winner = $this->playerCheck($_POST['winner']);
 			$loser = $this->playerCheck($_POST['loser']);
 
@@ -121,11 +122,14 @@
 				// Add player
 				$player_submit = $this->app->database->Query(sprintf($this->app->queries->add_player, $this->app->database->Escape($player)));
 				$player = $this->app->database->connection->insert_id;
-				
+
 				if (empty($player))
 				{
 					$this->fail(GameError::$database);
 				}
+
+				// Mark as new player added
+				$this->is_new_player = true;
 			}
 
 			return $player;
@@ -135,11 +139,31 @@
 		{
 			if ($this->is_ajax)
 			{
-				// Get fresh player list
-				$players = new GamePlayers($this->app);
+				$response = array('success' => true);
+
+				// Append updated player list?
+				if ($this->is_new_player)
+				{
+					// Get fresh player list
+					$players = new GamePlayers($this->app);
+
+					/*
+						Browsers don't order object keys consistently,
+						convert keys to string first ('id: N')
+					*/
+
+					$list = array();
+					foreach ($players->list as $id => $player)
+					{
+						$list['id: ' . $id] = $player;
+					}
+
+					// Add to JSON
+					$response['players'] = $list;
+				}
 
 				// Output JSON
-				echo json_encode(array('success' => true, 'players' => $players->list));
+				echo json_encode($response);
 				exit;
 			}
 
@@ -150,8 +174,10 @@
 		{
 			if ($this->is_ajax)
 			{
+				$response = array('success' => false, 'error' => $type);
+			
 				// Output JSON
-				echo json_encode(array('success' => false, 'error' => $type));
+				echo json_encode($response);
 				exit;
 			}
 

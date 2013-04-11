@@ -23,7 +23,7 @@
 			// Build up results objects
 			while ($player = $players->fetch_object())
 			{
-				$this->list[$player->id] = $player->name;
+				$this->list[intval($player->id)] = $player->name;
 			}
 		}
 	}
