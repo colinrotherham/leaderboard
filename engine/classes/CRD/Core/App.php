@@ -13,8 +13,6 @@
 	
 		public $version = '';
 		public $name = '';
-		public $templates = array();
-		public $partials = array();
 
 		public $cache_enabled = true;
 		public $cache_length = 3600;
@@ -36,7 +34,7 @@
 			$this->queries = (object) array();
 
 			// Instantiate other helpers + inject app instance
-			$this->cache = new Cache($this->name, $this->cache_enabled, $this->cache_length);
+			$this->cache = new Cache($this, $this->cache_enabled, $this->cache_length);
 			$this->database = new Database($this->credentials);
 			$this->redirect = new Redirect();
 		}

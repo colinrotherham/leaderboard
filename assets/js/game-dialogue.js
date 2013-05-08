@@ -178,8 +178,13 @@
 				// Close dialogue, update players
 				close(undefined, function()
 				{
-					playerUpdate(response.players);
 					button.removeAttr('disabled');
+
+					// Rebuild players
+					if (response.players)
+					{
+						playerUpdate(response.players);
+					}
 				});
 			}
 

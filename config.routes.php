@@ -12,7 +12,7 @@
 	// Home
 	$app->router->add('/', array('view-home'), function($view)
 	{
-		$view->template = new Template($view, 'page', 'page-home');
+		$view->template = new Template($view, 'template-page', 'page-home');
 	});
 
 	// Weekly leaderboard
