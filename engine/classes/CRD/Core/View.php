@@ -10,13 +10,13 @@
 	class View
 	{
 		public $app;
+
 		public $name;
 		public $action;
 		public $template;
 
-		// All templates and partials
-		public $templates = array();
-		public $partials = array();
+		// Other helpers
+		public $cache;
 
 		// Shared array for passing from route action to view
 		public $bag;
@@ -27,15 +27,15 @@
 			$this->name = $name;
 			$this->action = $action;
 
-			if (!empty($this->name) && !file_exists($this->location()))
+			if (empty($this->name))
+				throw new \Exception('Creating view: Missing view name');
+
+			else if (!file_exists($this->location()))
 				throw new \Exception('Checking view: Missing view file');
 
-			// Allow views to access templates/partials
-			$this->templates = $app->templates;
-			$this->partials = $app->partials;
-
-			// Provide caching helper
-			$this->cache = $app->cache;
+			// Other helpers
+			$this->cache = $this->app->cache;
+			$this->file = new File($this->cache);
 
 			// Make view bag an object
 			$this->bag = (object) array();
@@ -57,7 +57,11 @@
 
 			// Present view if provided
 			if (!empty($this->name))
-				require_once ($this->location());
+			{			
+				// Inject file, from cache if possible
+				$context = (object) array('name' => 'view', 'scope' => $this);
+				$this->file->inject($this->location(), 'view-' . $this->name, $context);
+			}
 		}
 	}
 ?>

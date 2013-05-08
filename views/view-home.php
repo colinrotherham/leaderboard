@@ -4,10 +4,10 @@
 	use \CRD\Leaderboard\GamePlayers as GamePlayers;
 	use \CRD\Leaderboard\GameError as GameError;
 
-	$players = new GamePlayers($this->app);
+	$players = new GamePlayers($view->app);
 
 	// Start placeholder
-	$this->template->placeHolder('main');
+	$view->template->placeHolder('main');
 
 	// An error occurred?
 	$is_invalid = (isset($_GET['error']))? true : false;
@@ -91,5 +91,5 @@
 			</div>
 <?php
 	// End placeholder
-	$this->template->placeHolderEnd();
+	$view->template->placeHolderEnd();
 ?>

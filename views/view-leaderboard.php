@@ -2,8 +2,8 @@
 	namespace CRD\Core;
 
 	// Build ranks
-	$rank_weekly = (!empty($this->bag->weekly))? true : false;
-	$rankings = new \CRD\Leaderboard\GameRankings($this->app, $rank_weekly);
+	$rank_weekly = (!empty($view->bag->weekly))? true : false;
+	$rankings = new \CRD\Leaderboard\GameRankings($view->app, $rank_weekly);
 
 	$title = (!$rank_weekly)? 'Last 30 days' : 'This week';
 	$no_results = (!$rank_weekly)? 'There have been no games in the last 30 days' : 'There have been no games this week';

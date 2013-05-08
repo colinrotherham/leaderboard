@@ -1,3 +1,3 @@
 <?php
-	$game = new \CRD\Leaderboard\Game($this->app);
+	$game = new \CRD\Leaderboard\Game($view->app);
 ?>

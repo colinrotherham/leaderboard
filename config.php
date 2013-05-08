@@ -24,12 +24,6 @@
 	$app->credentials->username = 'sample';
 	$app->credentials->password = 'password';
 
-	// Page templates
-	$app->templates = array
-	(
-		'page'		=> '/templates/template-page.php'
-	);
-
 	// Add queries config
 	require_once ($path . '/config.queries.php');
 ?>
