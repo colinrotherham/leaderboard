@@ -21,9 +21,12 @@
 			$players = $this->app->database->Query($this->app->queries->players);
 
 			// Build up results objects
-			while ($player = $players->fetch_object())
+			foreach ($players as $player)
 			{
-				$this->list[intval($player->id)] = $player->name;
+				$id = intval($player['id']);
+				$name = $player['name'];
+
+				$this->list[$id] = $player['name'];
 			}
 		}
 	}

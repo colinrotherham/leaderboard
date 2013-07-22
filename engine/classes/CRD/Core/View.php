@@ -15,9 +15,6 @@
 		public $action;
 		public $template;
 
-		// Other helpers
-		public $cache;
-
 		// Shared array for passing from route action to view
 		public $bag;
 	
@@ -27,15 +24,11 @@
 			$this->name = $name;
 			$this->action = $action;
 
-			if (empty($this->name))
-				throw new \Exception('Creating view: Missing view name');
-
-			else if (!file_exists($this->location()))
+			if (isset($this->name) && !file_exists($this->location()))
 				throw new \Exception('Checking view: Missing view file');
 
 			// Other helpers
-			$this->cache = $this->app->cache;
-			$this->file = new File($this->cache);
+			$this->file = new File($this->app->cache);
 
 			// Make view bag an object
 			$this->bag = (object) array();
@@ -57,7 +50,7 @@
 
 			// Present view if provided
 			if (!empty($this->name))
-			{			
+			{
 				// Inject file, from cache if possible
 				$context = (object) array('name' => 'view', 'scope' => $this);
 				$this->file->inject($this->location(), 'view-' . $this->name, $context);

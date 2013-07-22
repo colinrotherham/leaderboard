@@ -66,12 +66,12 @@
 	$app->queries->add_game = "
 	
 		INSERT INTO games (winnerId, loserId)
-		VALUES(%s, %s)
+		VALUES(?, ?)
 	";
 	
 	// Add player
 	$app->queries->add_player = "
 	
 		REPLACE INTO players (name)
-		VALUES('%s')
+		VALUES(?)
 	";
