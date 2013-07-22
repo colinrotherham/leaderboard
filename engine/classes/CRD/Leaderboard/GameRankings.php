@@ -30,7 +30,7 @@
 			$this->query();
 
 			// Continue if not empty
-			if (!empty($this->results_wins->num_rows) && !empty($this->results_losses->num_rows))
+			if (!empty($this->results_wins) && !empty($this->results_losses))
 			{
 				$this->results();
 				
@@ -54,27 +54,27 @@
 		public function results()
 		{
 			// Build up results objects
-			while ($win = $this->results_wins->fetch_object())
+			foreach ($this->results_wins as $win)
 			{
 				// Create new score object for wins
-				$result = new GameScore($win->name);
-				$result->scores($win->wins, 0);
+				$result = new GameScore($win['name']);
+				$result->scores($win['wins'], 0);
 
 				// Add to array
-				$this->results[$win->id] = $result;
+				$this->results[$win['id']] = $result;
 			}
 
 			// Append losses
-			while ($loss = $this->results_losses->fetch_object())
+			foreach ($this->results_losses as $loss)
 			{
 				// Never won a game, create new score object
-				if (empty($this->results[$loss->id]))
-					$this->results[$loss->id] = new GameScore($loss->name);
+				if (empty($this->results[$loss['id']]))
+					$this->results[$loss['id']] = new GameScore($loss['name']);
 
-				$result = $this->results[$loss->id];
-				$result->scores($result->wins, $loss->losses);
+				$result = $this->results[$loss['id']];
+				$result->scores($result->wins, (!empty($loss['losses']))? $loss['losses'] : 0);
 			}
-			
+
 			// Sort object by wins
 			usort($this->results, array($this, 'sort_wins_losses'));
 		}

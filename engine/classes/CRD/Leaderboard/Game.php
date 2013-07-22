@@ -47,9 +47,15 @@
 		
 		private function create($winner, $loser)
 		{
+			$submit_params = array
+			(
+				array('d', $winner),
+				array('d', $loser)
+			);
+
 			// Save game
-			$submit_query = sprintf($this->app->queries->add_game, $winner, $loser);
-			$submit_result = $this->app->database->Query($submit_query);
+			$submit_query = $this->app->queries->add_game;
+			$submit_result = $this->app->database->Query($submit_query, $submit_params);
 
 			// Row added?
 			if ($submit_result)
@@ -120,7 +126,10 @@
 			else
 			{
 				// Add player
-				$player_submit = $this->app->database->Query(sprintf($this->app->queries->add_player, $this->app->database->Escape($player)));
+				$player_param = array('s', $this->app->database->Escape($player));
+				$player_submit = $this->app->database->Query($this->app->queries->add_player, array($player_param));
+
+				// Grab new player ID
 				$player = $this->app->database->connection->insert_id;
 
 				if (empty($player))
