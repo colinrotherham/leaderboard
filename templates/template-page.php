@@ -3,7 +3,7 @@
 
 	$resources = $template->resources;
 	$html = $template->html;
-	$app = $template->view->app;
+	$app = $template->app;
 
 ?><!doctype html>
 <html lang="<?= $html->entities($resources->locale) ?>">
