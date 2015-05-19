@@ -31,7 +31,7 @@
 	};
 
 	// Typekit fonts
-	CRD.typekit.init({ kitId: 'vpq4ijb' });
+	CRD.typekit.init({ kitId: 'hjz0ljw' });
 
 	// Init MM helper
 	MM.init();
