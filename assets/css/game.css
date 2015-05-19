@@ -20,19 +20,19 @@
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
 	}
-	
+
 	#container
 	{
 		position: relative;
 	}
-	
+
 	#container:after
 	{
 		content: '';
 		display: table;
 		clear: both;
 	}
-	
+
 	#main
 	{
 		-webkit-transition-duration: 0.5s;
@@ -40,12 +40,12 @@
 		-o-transition-duration: 0.5s;
 		transition-duration: 0.5s;
 	}
-	
+
 	#main.mask
 	{
 		opacity: 0.2;
 	}
-	
+
 	/* Hide during font load */
 	.wf-loading body
 	{
@@ -64,17 +64,17 @@
 		text-decoration: none;
 		text-shadow: 1px 1px 1px #FFF;
 	}
-	
+
 	h2
 	{
 		margin: 0 0 15px;
 	}
-	
+
 	p
 	{
 		margin: -0.5em 0 0.5em;
 	}
-	
+
 	@media (min-width: 400px)
 	{
 		body
@@ -83,15 +83,15 @@
 			padding-top: 6%;
 			padding-bottom: 6%;
 		}
-	
+
 		h1
 		{
 			margin-bottom: 30px;
-		
+
 			font-size: 3.75em;	/* 60 / 16 */
 			text-align: center;
 		}
-		
+
 		h2
 		{
 			margin-bottom: 25px;
@@ -113,7 +113,7 @@
 	{
 		margin-top: 20px;
 	}
-	
+
 	.ranking table
 	{
 		width: 215px;
@@ -123,7 +123,7 @@
 		border-radius: 10px;
 		border-spacing: 0;
 	}
-	
+
 	.ranking-weekly table
 	{
 		background: #ECECE3;
@@ -134,7 +134,7 @@
 	{
 		padding: 4px;
 	}
-	
+
 	.ranking table tr.negative th,
 	.ranking table tr.negative td
 	{
@@ -147,27 +147,27 @@
 		min-width: 25px;
 		text-align: right;
 	}
-	
+
 	.ranking table td
 	{
 		text-align: left;
 	}
-	
+
 	.placeholder
 	{
 		opacity: 0;
-		
+
 		-webkit-transition: opacity 0.15s ease-in-out;
 		-moz-transition: opacity 0.15s ease-in-out;
 		-o-transition: opacity 0.15s ease-in-out;
 		transition: opacity 0.15s ease-in-out;
 	}
-	
+
 	.placeholder button
 	{
 		margin-top: 10px;
 	}
-	
+
 	.reload
 	{
 		position: relative;
@@ -176,28 +176,28 @@
 		display: inline-block;
 		width: 19px;
 		height: 18px;
-		
+
 		margin: 0 5px 0 0;
 		padding: 0;
-	
+
 		border: none;
-		background: url('/assets/img/reload.png') no-repeat;
+		background: url('../img/reload.png') no-repeat;
 
 		text-indent: -10000px;
 		vertical-align: middle;
 	}
-	
+
 	.reload:hover,
 	.reload:focus
 	{
 		background-position: 0 -18px;
 		cursor: pointer;
 	}
-	
+
 	.loaded .placeholder
 	{
 		opacity: 1;
-		
+
 		-webkit-transition-duration: 0.75s;
 		-moz-transition-duration: 0.75s;
 		-o-transition-duration: 0.75s;
@@ -210,15 +210,15 @@
 		{
 			float: left;
 			width: 49.5%;
-			
+
 			text-align: center;
 		}
-		
+
 		.ranking + .ranking
 		{
 			margin-left: 1%;
 		}
-		
+
 		.ranking table
 		{
 			width: 100%;
@@ -229,7 +229,7 @@
 
 			border-radius: 10px 0 0 10px;
 		}
-		
+
 		.ranking-weekly table
 		{
 			border-radius: 0 10px 10px 0;
@@ -239,23 +239,23 @@
 		{
 			width: 15%;
 		}
-		
+
 		.ranking + .ranking
 		{
 			margin-top: 0;
 		}
-		
+
 		.placeholder p
 		{
 			padding: 0 15%;
 		}
 	}
-	
+
 	@media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and (min-resolution: 120dpi)
 	{
 		.reload
 		{
-			background-image: url('/assets/img/reload@2x.png');
+			background-image: url('../img/reload@2x.png');
 			background-size: 19px 36px;
 		}
 	}
@@ -267,33 +267,33 @@
 
 	.spinner
 	{
-		position: absolute;		
+		position: absolute;
 		display: inline-block;
 
 		margin: 0 auto;
 		padding: 4px 0 5px;
 
 		height: 31px;
-		
+
 		-webkit-transition: 0.2s ease-in-out;
 		-moz-transition: 0.2s ease-in-out;
 		-o-transition: 0.2s ease-in-out;
 		transition: 0.2s ease-in-out;
 	}
-	
+
 	.spinner .icon
 	{
 		float: left;
 		display: block;
-		
+
 		width: 31px;
 		height: 31px;
-		
+
 		margin: -4px 8px;
-		
-		background: url('/assets/img/spinner.png') no-repeat;
+
+		background: url('../img/spinner.png') no-repeat;
 	}
-	
+
 	.spinner.busy .icon
 	{
 		-webkit-animation: rotating 1s linear infinite;
@@ -301,11 +301,11 @@
 		-ms-animation: rotating 1s linear infinite;
 		animation: rotating 1s linear infinite;
 	}
-	
+
 	.spinner.drop
 	{
 		opacity: 0;
-		
+
 		-webkit-transition-timing-function: ease-in;
 		-moz-transition-timing-function: ease-in;
 		-o-transition-timing-function: ease-in;
@@ -329,7 +329,7 @@
 		{
 			left: 20%;
 		}
-		
+
 		.spinner.drop
 		{
 			-webkit-transform: translateY(200px);
@@ -338,12 +338,12 @@
 			transform: translateY(200px);
 		}
 	}
-	
+
 	@media only screen and (-webkit-min-device-pixel-ratio: 1.25), only screen and (min-resolution: 120dpi)
 	{
 		.busy .icon
 		{
-			background-image: url('/assets/img/spinner@2x.png');
+			background-image: url('../img/spinner@2x.png');
 			background-size: 31px 31px;
 		}
 	}
@@ -358,13 +358,13 @@
 		from	{ -webkit-transform: rotate(0deg); }
 		to		{ -webkit-transform: rotate(360deg); }
 	}
-	
+
 	@-moz-keyframes rotating
 	{
 		from	{ -moz-transform: rotate(0deg); }
 		to		{ -moz-transform: rotate(360deg); }
 	}
-	
+
 	@keyframes rotating
 	{
 		from	{ transform: rotate(0deg); }
@@ -375,12 +375,12 @@
 /*
 	Add game popup
 	----------------------------------- */
-	
+
 	.popup
 	{
 		position: absolute;
 		top: 60px;
-		
+
 		display: none;
 
 		width: 90%;
@@ -396,13 +396,13 @@
 		-o-transition: 0.2s ease-in-out;
 		transition: 0.2s ease-in-out;
 	}
-	
+
 	.popup .close
 	{
 		position: absolute;
 		top: 20px;
 		right: 5%;
-		
+
 		-webkit-transition-duration: 0.1s;
 		-moz-transition-duration: 0.1s;
 		-o-transition-duration: 0.1s;
@@ -413,22 +413,22 @@
 	{
 		opacity: 1;
 	}
-	
+
 	.popup .error
 	{
 		display: none;
-	
+
 		margin-bottom: 20px;
 		padding: 4px 8px;
-		
+
 		background: #F1F1CB;
 	}
-	
+
 	.popup .error.show
 	{
 		display: block;
 	}
-	
+
 	.popup p
 	{
 		margin: 0;
@@ -446,11 +446,11 @@
 			-o-transform: translateY(20px);
 			transform: translateY(20px);
 		}
-	
+
 		.popup.show
 		{
 			display: block;
-		
+
 			-webkit-transform: translateY(0);
 			-moz-transform: translateY(0);
 			-o-transform: translateY(0);
@@ -468,9 +468,9 @@
 	{
 		position: relative;
 		z-index: 1;
-	
+
 		margin: 0;
-	
+
 		width: 100%;
 		height: 30px;
 
@@ -484,22 +484,22 @@
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 	}
-	
+
 	form label
 	{
 		display: block;
 		margin-bottom: 2px;
 	}
-	
+
 	form label a
 	{
 		margin-left: 5px;
-	
+
 		color: #b3575b;
 		font-size: 0.875em;
 		text-decoration: none;
 	}
-	
+
 	form label a:hover,
 	form label a:focus
 	{
@@ -511,7 +511,7 @@
 	{
 		margin: 10px 0 0;
 	}
-	
+
 	@media (min-width: 400px)
 	{
 		form div
@@ -519,7 +519,7 @@
 			float: left;
 			width: 48%;
 		}
-		
+
 		form div + div
 		{
 			margin: 0 0 0 4%;

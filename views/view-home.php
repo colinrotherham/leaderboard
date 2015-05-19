@@ -29,38 +29,38 @@
 			<div id="main" role="main"<?= ($is_invalid)? ' class="mask"' : '' ?>>
 
 				<h1>Leaderboard</h1>
-	
+
 				<!-- Totals, 30-days -->
-				<div class="ranking ranking-total" data-src="/leaderboard/default/">
+				<div class="ranking ranking-total" data-src="leaderboard/default/">
 					<p class="spinner busy"><span class="icon"></span> Loading…</p>
 					<div class="placeholder"></div>
 				</div>
-	
+
 				<!-- Totals, this week -->
-				<div class="ranking ranking-weekly" data-src="/leaderboard/weekly/">
+				<div class="ranking ranking-weekly" data-src="leaderboard/weekly/">
 					<p class="spinner busy"><span class="icon"></span> Loading…</p>
 					<div class="placeholder"></div>
 				</div>
 			</div>
-			
+
 			<!-- Add game -->
 			<div class="popup<?= ($is_invalid)? ' show' : '' ?>" role="alertdialog">
-				<button class="close">x</button>
-			
+				<button class="close">×</button>
+
 				<h2>Add game</h2>
 
 				<div id="error-generic" class="error<?= ($is_invalid_generic)? ' show': '' ?>">
 					<p>Sorry, we couldn’t add that game. Please try again…</p>
 				</div>
-				
+
 				<div id="error-missing" class="error<?= ($is_invalid_missing)? ' show' : '' ?>">
 					<p>Sorry, looks like you’ve missed a player…</p>
 				</div>
-				
+
 				<div id="error-duplicate" class="error<?= ($is_invalid_duplicate)? ' show' : '' ?>">
 					<p>Sorry, looks like you’ve picked duplicate players…</p>
 				</div>
-				
+
 				<div id="error-database" class="error<?= ($is_invalid_database)? ' show' : '' ?>">
 					<p>Sorry, we couldn’t add this game to the database…</p>
 				</div>
@@ -73,7 +73,7 @@
 <?php foreach ($players->list as $player_id => $player) : ?>
 							<option value="<?= $player_id ?>"><?= $player ?></option>
 <?php endforeach; ?>
-							
+
 						</select>
 					</div>
 					<div>
@@ -85,7 +85,7 @@
 <?php endforeach; ?>
 						</select>
 					</div>
-					
+
 					<button type="submit">Submit</button>
 				</form>
 			</div>
