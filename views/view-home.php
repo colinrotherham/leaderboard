@@ -65,7 +65,7 @@
 					<p>Sorry, we couldn’t add this game to the database…</p>
 				</div>
 
-				<form method="post" action="/game/add/">
+				<form method="post" action="game/add/">
 					<div>
 						<label for="winner">Winner <a class="new-player" href="#not-listed" role="button">+ Add new player</a></label>
 						<select id="winner" name="winner">
